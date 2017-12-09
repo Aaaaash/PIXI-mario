@@ -10,8 +10,8 @@ import {
   Text,
 } from 'pixi.js';
 
-import keyboard from './keyboard';
-import hitTestRectangle from './hitTestRectangle';
+import keyboard from '../utils/keyboard';
+import hitTestRectangle from '../utils/hitTestRectangle';
 
 import img from './images/mirro.png';
 
