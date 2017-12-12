@@ -10,22 +10,20 @@ import {
   Text,
 } from 'pixi.js';
 
-import keyboard from '../utils/keyboard';
-import hitTestRectangle from '../utils/hitTestRectangle';
+import keyboard from './utils/keyboard';
+import hitTestRectangle from './utils/hitTestRectangle';
+
+import Renderer from './view/renderer';
 
 import img from './images/mirro.png';
+
+const renderer = new Renderer();
 
 /**
  * 传入配置创建一个app对象
  */
 
-const app = new Application({
-  width: 500,
-  height: 500,
-  antialiasing: true, // 抗锯齿
-  transparent: false, // 透明
-  resolution: 1, // 解析度
-});
+const app = renderer.game;
 
 // canvas对象全屏
 // app.renderer.view.style.position = "absolute"
