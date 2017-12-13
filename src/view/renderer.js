@@ -6,9 +6,16 @@ class Renderer {
     this.instances = [];
   }
 
+  static getInstance() {
+    if (!Renderer.instance) {
+        Renderer.instance = new Renderer();
+    }
+    return Renderer.instance;
+  }
+
   init() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = 500;
+    const height = 500;
     this.game = new Application({
       width,
       height,

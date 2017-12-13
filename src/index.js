@@ -12,11 +12,11 @@ import {
 
 import keyboard from './utils/keyboard';
 import hitTestRectangle from './utils/hitTestRectangle';
-import Renderer from './view/renderer';
-import SpriteImage from './element/sprite';
+import Renderer from './view/Renderer';
+import SpriteImage from './element/SpriteImage';
 import img from './images/mirro.png';
 
-const renderer = new Renderer();
+const renderer = new Renderer.getInstance();
 
 const app = renderer.game;
 document.body.appendChild(app.view);
@@ -53,4 +53,3 @@ function loadProgressHandler(loader, resource) {
 
   console.log(`progress: ${loader.progress}%`);
 }
-
