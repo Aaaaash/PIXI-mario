@@ -11,8 +11,8 @@ function keyboard(keyCode) {
       if (key.isUp && key.press) key.press();
       key.isDown = true;
       key.isUp = false;
+      event.preventDefault();
     }
-    event.preventDefault();
   };
   //The `upHandler`
   key.upHandler = event => {
@@ -20,10 +20,10 @@ function keyboard(keyCode) {
       if (key.isDown && key.release) key.release();
       key.isDown = false;
       key.isUp = true;
+      event.preventDefault();
     }
-    event.preventDefault();
   };
-  //Attach event listeners
+
   window.addEventListener(
     "keydown", key.downHandler.bind(key), false
   );

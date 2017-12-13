@@ -1,22 +1,12 @@
-import {
-  Application,
-  loader,
-  Sprite,
-  Container,
-  TextureCache,
-  Rectangle,
-  Graphics,
-  TextStyle,
-  Text,
-} from 'pixi.js';
-
 import keyboard from './utils/keyboard';
 import hitTestRectangle from './utils/hitTestRectangle';
 import Renderer from './view/Renderer';
 import SpriteImage from './element/SpriteImage';
 import img from './images/mirro.png';
 
-const renderer = new Renderer.getInstance();
+const renderer = new Renderer.getInstance({
+  autoResize: true,
+});
 
 const app = renderer.game;
 document.body.appendChild(app.view);
@@ -26,6 +16,7 @@ const mirroSprite = new SpriteImage({
   loadProgressHandler,
   setup: handleSetup,
   keyboardControl: true,
+  app,
 });
 
 function handleSetup(instance) {
@@ -36,16 +27,6 @@ function handleSetup(instance) {
   instance.vy = 0;
   renderer.insertInstance(instance);
   app.stage.addChild(instance);
-
-  const state = (delta) => {
-    instance.x += instance.vx;
-    instance.y += instance.vy
-  };
-  if (!!mirroSprite.keyboardControl) {
-    app.ticker.add(delta => {
-      state(delta);
-    });
-  }
 }
 
 function loadProgressHandler(loader, resource) {

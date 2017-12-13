@@ -8,6 +8,7 @@ class SpriteImage {
     this.load = this.load.bind(this);
     this.handleSetup = config.setup;
     this.keyboardControl = config.keyboardControl;
+    this.app = config.app;
     loader.add(config.src)
       .on('progress', config.loadProgressHandler)
       .load(this.load);
@@ -17,11 +18,15 @@ class SpriteImage {
     const img = loader.resources[this.sourceUrl].texture;
     this.instance = new Sprite(img);
 
-    if (this.keyboardControl) {
-      this.instance = new ControllableElements(this.instance).element;
-    }
-
     this.handleSetup(this.instance);
+
+    if (this.keyboardControl) {
+      this.instance = new ControllableElements({
+        element: this.instance,
+        app: this.app,
+        bound: 'parent', 
+      }).element;
+    }
   }
 }
 

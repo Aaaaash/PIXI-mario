@@ -1,9 +1,24 @@
 import keyboard from '../utils/keyboard';
+import hitRendererBound from '../utils/hitRendererBound';
 
 class ControllableElements {
-  constructor(element) {
-    this.element = element;
+  constructor(config) {
+    this.element = config.element;
+    this.parent = this.element.parent;
+    this.app = config.app;
     this.bindKeyboardEvent();
+    this.initControl();
+  }
+
+  initControl() {
+    const state = (delta) => {
+      this.element.x += this.element.vx;
+      this.element.y += this.element.vy
+      hitRendererBound(this.element, this.app.renderer);
+    };
+    this.app.ticker.add(delta => {
+      state(delta);
+    });
   }
 
   bindKeyboardEvent() {

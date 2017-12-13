@@ -14,14 +14,15 @@ class Renderer {
   }
 
   init() {
-    const width = 500;
-    const height = 500;
+    // const width = 500;
+    // const height = 500;
     this.game = new Application({
-      width,
-      height,
+      // width,
+      // height,
       antialiasing: true,
       transparent: false,
       resolution: 1,
+      autoResize: true,
     });
   }
 
