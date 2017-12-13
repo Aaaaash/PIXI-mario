@@ -3,6 +3,7 @@ import { Application } from "pixi.js";
 class Renderer {
   constructor() {
     this.init();
+    this.instances = [];
   }
 
   init() {
@@ -15,6 +16,10 @@ class Renderer {
       transparent: false,
       resolution: 1,
     });
+  }
+
+  insertInstance(instance) {
+    this.instances.push(instance);
   }
 }
 
