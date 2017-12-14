@@ -1,9 +1,18 @@
-import { loader, Sprite } from 'pixi.js';
+import { loader, Application, loaders } from 'pixi.js';
 
 import ControllableElements from './ControllableElements';
+import { MarioSprite } from '../typings/elements';
+
+interface SpriteConfig {
+  src: string;
+  setup: () => void;
+  keyboardControl: boolean;
+  app: Application;
+  loadProgressHandler: (loader: loaders.Loader, resource: loaders.Resource) => void;
+}
 
 class SpriteImage {
-  constructor(config: any) {
+  constructor(config: SpriteConfig) {
     this.sourceUrl = config.src;
     this.load = this.load.bind(this);
     this.handleSetup = config.setup;
@@ -16,26 +25,30 @@ class SpriteImage {
 
   public sourceUrl: string;
 
-  public handleSetup: (T: object) => void;
+  public handleSetup: () => void;
 
   public keyboardControl: boolean;
 
-  public app: any;
+  public app: Application;
 
-  public instance: any;
+  public instance: MarioSprite;
+
+  public controlable: ControllableElements;
 
   private load() {
     const img = loader.resources[this.sourceUrl].texture;
-    this.instance = new Sprite(img);
+    this.instance = new MarioSprite(img);
 
-    this.handleSetup(this.instance);
+    this.handleSetup();
 
     if (this.keyboardControl) {
-      this.instance = new ControllableElements({
+      this.controlable = new ControllableElements({
         element: this.instance,
         app: this.app,
-        bound: 'parent', 
-      }).element;
+        bound: 'parent',
+        direction: 'x',
+      });
+      this.instance = this.controlable.element;
     }
   }
 }

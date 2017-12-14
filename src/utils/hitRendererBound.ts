@@ -1,4 +1,6 @@
-function hitRendererBound(element: any, renderer: any): void {
+import { LocatableElements } from '../typings/elements';
+
+function hitRendererBound(element: LocatableElements, renderer: LocatableElements): void {
   if (element.x <= 0) {
     element.x = 0;
   }
