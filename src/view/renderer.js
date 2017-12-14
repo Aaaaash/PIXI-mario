@@ -22,12 +22,29 @@ class Renderer {
       antialiasing: true,
       transparent: false,
       resolution: 1,
-      autoResize: true,
+      autoResize: false,
     });
+
+    const { view, renderer } = this.game;
+    view.style.width = '100%';
+    view.style.height = '100%';
+
+    this.runTicker();
   }
 
   insertInstance(instance) {
     this.instances.push(instance);
+  }
+
+  runTicker() {
+    this.game.ticker.add(delta => {
+      this.updateResize(delta);
+    });
+  }
+
+  updateResize(delta) {
+    const { view, renderer } = this.game;
+    renderer.resize(view.clientWidth, view.clientHeight);
   }
 }
 

@@ -4,13 +4,11 @@ import Renderer from './view/Renderer';
 import SpriteImage from './element/SpriteImage';
 import img from './images/mirro.png';
 
-const renderer = new Renderer.getInstance({
-  autoResize: true,
-});
+const renderer = new Renderer.getInstance();
 
 const app = renderer.game;
 document.body.appendChild(app.view);
-
+console.log(app);
 const mirroSprite = new SpriteImage({
   src: img,
   loadProgressHandler,
