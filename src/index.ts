@@ -1,14 +1,11 @@
-import keyboard from './utils/keyboard';
-import hitTestRectangle from './utils/hitTestRectangle';
 import Renderer from './view/Renderer';
 import SpriteImage from './element/SpriteImage';
-import img from './images/mirro.png';
+import * as img from './images/mirro.png';
 
-const renderer = new Renderer.getInstance();
-
+const renderer = new Renderer();
 const app = renderer.game;
 document.body.appendChild(app.view);
-console.log(app);
+
 const mirroSprite = new SpriteImage({
   src: img,
   loadProgressHandler,
@@ -17,7 +14,9 @@ const mirroSprite = new SpriteImage({
   app,
 });
 
-function handleSetup(instance) {
+console.log(mirroSprite);
+
+function handleSetup(instance: any) {
   instance.width = 50;
   instance.height = 50;
   instance.y = 96; 
@@ -27,7 +26,7 @@ function handleSetup(instance) {
   app.stage.addChild(instance);
 }
 
-function loadProgressHandler(loader, resource) {
+function loadProgressHandler(loader: any, resource: any) {
   console.log("loading: " + resource.url); 
 
   console.log(`progress: ${loader.progress}%`);

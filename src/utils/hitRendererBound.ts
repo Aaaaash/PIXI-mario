@@ -1,4 +1,4 @@
-function hitRendererBound(element, renderer) {
+function hitRendererBound(element: any, renderer: any): void {
   if (element.x <= 0) {
     element.x = 0;
   }

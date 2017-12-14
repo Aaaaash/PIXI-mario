@@ -1,5 +1,5 @@
 //The `hitTestRectangle` function
-function hitTestRectangle(r1, r2) {
+function hitTestRectangle(r1: any, r2: any): boolean {
   //Define the variables we'll need to calculate
   let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
   //hit will determine whether there's a collision

@@ -2,7 +2,7 @@ import keyboard from '../utils/keyboard';
 import hitRendererBound from '../utils/hitRendererBound';
 
 class ControllableElements {
-  constructor(config) {
+  constructor(config: any) {
     this.element = config.element;
     this.parent = this.element.parent;
     this.app = config.app;
@@ -10,13 +10,17 @@ class ControllableElements {
     this.initControl();
   }
 
+  public element: any;
+  public parent: any;
+  public app: any;
+
   initControl() {
-    const state = (delta) => {
+    const state = (delta: any) => {
       this.element.x += this.element.vx;
       this.element.y += this.element.vy
       hitRendererBound(this.element, this.app.renderer);
     };
-    this.app.ticker.add(delta => {
+    this.app.ticker.add((delta: any) => {
       state(delta);
     });
   }

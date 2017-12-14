@@ -1,38 +1,30 @@
 import { Application } from "pixi.js";
 
-class Renderer {
+export default class Renderer {
   constructor() {
     this.init();
-    this.instances = [];
   }
 
-  static getInstance() {
-    if (!Renderer.instance) {
-        Renderer.instance = new Renderer();
-    }
-    return Renderer.instance;
-  }
+  public instances: Array<object> = [];
+
+  public instance: object;
+
+  public game: Application;
 
   init() {
-    // const width = 500;
-    // const height = 500;
-    this.game = new Application({
-      // width,
-      // height,
-      antialiasing: true,
+    this.game = new Application(0, 0, {
       transparent: false,
       resolution: 1,
       autoResize: false,
     });
 
-    const { view, renderer } = this.game;
+    const { view } = this.game;
     view.style.width = '100%';
     view.style.height = '100%';
-
     this.runTicker();
   }
 
-  insertInstance(instance) {
+  insertInstance(instance: any) {
     this.instances.push(instance);
   }
 
@@ -42,10 +34,9 @@ class Renderer {
     });
   }
 
-  updateResize(delta) {
+  updateResize(delta: any) {
     const { view, renderer } = this.game;
     renderer.resize(view.clientWidth, view.clientHeight);
   }
 }
 
-export default Renderer;

@@ -1,9 +1,9 @@
-import { utils, loader, Sprite } from 'pixi.js';
+import { loader, Sprite } from 'pixi.js';
 
 import ControllableElements from './ControllableElements';
 
 class SpriteImage {
-  constructor(config) {
+  constructor(config: any) {
     this.sourceUrl = config.src;
     this.load = this.load.bind(this);
     this.handleSetup = config.setup;
@@ -14,7 +14,17 @@ class SpriteImage {
       .load(this.load);
   }
 
-  load() {
+  public sourceUrl: string;
+
+  public handleSetup: (T: object) => void;
+
+  public keyboardControl: boolean;
+
+  public app: any;
+
+  public instance: any;
+
+  private load() {
     const img = loader.resources[this.sourceUrl].texture;
     this.instance = new Sprite(img);
 

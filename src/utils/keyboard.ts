@@ -1,5 +1,16 @@
-function keyboard(keyCode) {
-  var key = {};
+
+interface Key {
+  code?: number;
+  isDown?: boolean;
+  isUp?: boolean;
+  press?: () => void;
+  release?: () => void;
+  downHandler?: (e: any) => void;
+  upHandler?: (e: any) => void;
+}
+
+function keyboard(keyCode: number) {
+  const key: Key = {};
   key.code = keyCode;
   key.isDown = false;
   key.isUp = true;
