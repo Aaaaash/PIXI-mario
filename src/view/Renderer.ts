@@ -31,7 +31,7 @@ export default class Renderer {
   }
 
   runTicker() {
-    this.game.ticker.add(deltaTime => {
+    this.game.ticker.add((deltaTime: number) => {
       this.updateResize(deltaTime);
     });
   }
